@@ -28,19 +28,23 @@ def confirmList():
         returner  += 1
         return returner
 
+
 def lengthOfList():
     length = input("Length of list: ")
     integerLength = int(length)
     return integerLength
 
+
 def inputName():
     name = input("Name: ")
     return name
+
 
 def creatFileName():
     fileName = input("File Name: ")
     fileName += ".txt"
     return fileName
+
 
 def createListInFileFormat(listOfId, listOfName, fileName):
     length = len(listOfId)
@@ -51,6 +55,7 @@ def createListInFileFormat(listOfId, listOfName, fileName):
 
     for x in range(length):
         f.write(str(listOfId[x]) + ", " + str(listOfName[x]) + "\n")
+
 
 def createList(): 
     print("ok!") 
