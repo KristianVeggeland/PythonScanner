@@ -1,7 +1,9 @@
 import random
 import os
 
-def launch():
+# ******************************************************************* Functions for creating list file ************************************************************************
+
+def launchNewFile():
     confirm = confirmList()
 
     if confirm > 0:
@@ -17,16 +19,16 @@ def confirmList():
 
     returner = 0
 
-    if confirm == " ":
-        print("try again please")
-        confirm = input("Do you want to create list: ")
-
-    elif confirm == "y":
+    if confirm == "y":
         return returner
     
     elif confirm == "n":
         returner  += 1
         return returner
+
+    else:
+        print("try again please")
+        confirm = input("Do you want to create list: ")
 
 
 def lengthOfList():
@@ -88,10 +90,57 @@ def readList(nameOfFile):
     f = open(nameOfFile, "r")
     print(f.read())
 
-    
+# ******************************************************************* Functions for deleting file ************************************************************************
+
+def launchDeleteFile():
+    print("So you wan to delete a list?, well here it is. " + "\n")
+    fileName = findFile()
+    fileName = handleFile(fileName)
+
+    if fileName == "N":
+        decisionOnFile(fileName)
+    else:
+        print("Xlosing shop")
 
 
+def findFile():
+    listOfFiles = os.listdir()
+
+    fileName = " "
+
+    for x in range(len(listOfFiles)):
+        if ".txt" in str(listOfFiles[x]):
+            fileName = str(listOfFiles[x])
     
+    return fileName
+
+
+def handleFile(fileName):
+    if fileName == " ":
+        print("No list files found in this directory, of you go")
+        fileName = "N"
+        return fileName 
+    else:
+        return fileName
+
+
+def decisionOnFile(fileName):
+    decision = input("Do you want to remove this file: " + str(fileName) + " ")
+    if decision == "y":
+        deleteFile(fileName)
+    else:
+        print("Okay, of you go then.")
+
+
+def deleteFile(fileName):
+    if os.path.exists(fileName):
+        os.remove(fileName)
+        print("File deleted successfully")
+    else:
+        print("File not found in directory, dont know what else to tell you chief.")  
+
+
+
 
 
 
