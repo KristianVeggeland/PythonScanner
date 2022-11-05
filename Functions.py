@@ -52,9 +52,6 @@ def createListInFileFormat(listOfId, listOfName, fileName):
     for x in range(length):
         f.write(str(listOfId[x]) + ", " + str(listOfName[x]) + "\n")
 
-
-
-
 def createList(): 
     print("ok!") 
 
