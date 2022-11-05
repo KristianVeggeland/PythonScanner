@@ -1,4 +1,3 @@
-import random
 import os
 
 # ******************************************************************* Functions for creating list file ************************************************************************
@@ -90,7 +89,9 @@ def readList(nameOfFile):
     f = open(nameOfFile, "r")
     print(f.read())
 
+
 # ******************************************************************* Functions for deleting file ************************************************************************
+
 
 def launchDeleteFile():
     print("So you wan to delete a list?, well here it is. " + "\n")
