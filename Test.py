@@ -1,1 +1,3 @@
-print("********************************")
+from Functions import *
+
+launch()
