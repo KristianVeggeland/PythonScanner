@@ -88,7 +88,6 @@ def readList(nameOfFile):
     f = open(nameOfFile, "r")
     print(f.read())
 
-launch()
     
 
 
