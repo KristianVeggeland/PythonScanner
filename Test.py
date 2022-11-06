@@ -1,7 +1,7 @@
 from Functions import *
 
 
-# ********************************************************************** Testing function with small program ***************************************************************
+# ********************************************************************** Testing functions with small program ***************************************************************
 def whatDoYoWant():
     print("What do you want?" + "\n")
     answer  = getNewAnswer()
@@ -11,14 +11,14 @@ def whatDoYoWant():
             launchNewFile()
             answer  = getNewAnswer()
         elif int(answer) == 2:
-            launchNewFile()
+            launchDeleteFile()
             answer  = getNewAnswer()
         
         
     print("Program terminated, off you go now!") 
 
 
-# ************************************************************************ Supporting function for testing *********************************************************************    
+# **************************************************************** Supporting functions for testing program *********************************************************************    
 def getNewAnswer():
     answer = input("press 1 for creating list and 2 if you want to delete one" + "\n" "and 5 if you wish to terminate ")
     check = checkIfAnswerIsLegal(answer)

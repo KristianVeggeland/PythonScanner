@@ -95,34 +95,72 @@ def readList(nameOfFile):
 
 def launchDeleteFile():
     print("So you wan to delete a list?, well here it is. " + "\n")
-    fileName = findFile()
-    fileName = handleFile(fileName)
+    fileAmount = findFileAmount()
+    if fileAmount == 0:
+        print("No files found in this directory. " + "\n") 
+    elif fileAmount == 1:
+        name = findFileName() 
+        decisionOnFile(name)
+    elif fileAmount > 1:
+        Files = getListOfFiles()
+        handleListOfFiles(Files)
+        
 
-    if fileName == "N":
-        decisionOnFile(fileName)
-    else:
-        print("Xlosing shop")
+def findFileName():
+    files = os.listdir()
+
+    name = " "
+
+    for x in range(len(files)):
+        if  ".txt" in str(files[x]):
+            name = str(files[x])
+    
+    return name
+
+    
 
 
-def findFile():
+def findFileAmount():
     listOfFiles = os.listdir()
 
-    fileName = " "
+    counter = 0
 
-    for x in range(len(listOfFiles)):
-        if ".txt" in str(listOfFiles[x]):
-            fileName = str(listOfFiles[x])
+    for i in range(len(listOfFiles)):
+        if ".txt" in str(listOfFiles[i]):
+            print("JEFFF")
+            counter = counter + 1
+            print(str(counter))
+
+
+    if counter == 0:
+        print("No .txt files are in this directory.")
+        return 0
+
+    elif counter == 1:
+        return 1
+
+    elif counter > 1:
+        return 2
+
+
+def getListOfFiles():
+    fileList = os.listdir()
+    counter = 0
+
+    for x in range(len(fileList)):
+        if ".txt" in str(fileList[x]):
+            counter += 1 
     
-    return fileName
+    listOfWantedFiles = [None] * counter
 
+    helper = 0
 
-def handleFile(fileName):
-    if fileName == " ":
-        print("No list files found in this directory, of you go")
-        fileName = "N"
-        return fileName 
-    else:
-        return fileName
+    for x in range(len(fileList)):
+        if ".txt" in str(fileList[x]):
+            listOfWantedFiles[helper] = str(fileList[x])
+            helper += 1
+    
+    return listOfWantedFiles
 
 
 def decisionOnFile(fileName):
@@ -141,7 +179,46 @@ def deleteFile(fileName):
         print("File not found in directory, dont know what else to tell you chief.")  
 
 
+def deleteAllFiles(filelist):
+    list = filelist
+    for x in range(len(list)):
+        deleteFile(str(list[x]))
+    print("All .txt files deleted successfully")
 
+def deleteOnApproval(fileList):
+    for x in range(len(fileList)):
+        print("File is called: " + str(fileList[x]))
+        answer = input("Do you wish to delete this? y for yes and n for no: ")
+        if answer != "y" or answer != "n":
+            print("Answer " + str(answer) + " is illogical and is not valid" + "\n")
+            print("File is called: " + str(fileList[x]))
+            answer = input("Do you wish to delete this? y for yes and n for no: ")
+        elif answer == "y":
+            deleteFile(str(fileList[x]))
+        elif answer == "n":
+            print("Okay, moving on then")
+
+
+def handleListOfFiles(fileList):
+    print("It seems that this directory contains multiple text files" + "\n")
+    answer = input("We can remove all of them at once or if you wish we can show you them one at the time."
+                     + "\n" + "0 for delete all and 1 for one at them time or 2 if you wish to cancel: ")
+    if answer == "0":
+        deleteAllFiles(fileList)
+    
+
+    elif int(answer) == 1:
+        deleteOnApproval(fileList)
+        
+
+    elif int(answer) == 2:
+        print("okay my bad")
+
+
+    else:
+        print("Answer given is illogical. ")
+        answer = input("We can remove all of them at once or if you wish we can show you them one at the time."
+                     + "\n" + "0 for delete all and 1 for one at them time or 2 if you wish to cancel: ")
 
 
 
