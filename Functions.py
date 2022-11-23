@@ -220,7 +220,69 @@ def handleListOfFiles(fileList):
         answer = input("We can remove all of them at once or if you wish we can show you them one at the time."
                      + "\n" + "0 for delete all and 1 for one at them time or 2 if you wish to cancel: ")
 
+# ********************************************************************* view all lists functions ****************************************************************
+
+def launchViewLists():
+    answer = input("0 for view and for 1 all")
+
+    if(int(answer) == 0):
+        viewSingleList()
+    elif(int(answer) == 1):
+        viewAllLists()
+    else:
+        answer = input("0 for view and 1 for all")   
+     
+
+def viewSingleList():
+    fileList = os.listdir()
+    
+    counter = 0
+
+    for x in range(len(fileList) ):
+        if ".txt" in str(fileList[x]):
+            counter += 1
+    
+    if(counter == 0):
+        print("No lists found.")
+    elif(counter == 1):
+        for x in range(counter):
+            if ".txt" in str(fileList[x]):
+                f = open(fileList[x])
+                print(f.read())
+           
+    else:
+        print("There are more than one list found.")
+        print("We will therefore print out all the names of the list so that you can chose.")
+        for x in range(len(fileList)):
+            if ".txt" in str(fileList[x]):
+                print( str(fileList[x]) + "\n")
+
+        answer = input("Give your list to us.")
+
+        for x in range(len(fileList)):
+            if (str(fileList[x]) == answer):
+                f = open(fileList[x])
+                print(f.read())
+                
+        
+
+def viewAllLists(): 
+        fileList = os.listdir()
+        print("ff")
+        counter = 0
+
+        for x in range(len(fileList)):
+            if ".txt" in str(fileList[x]):
+                counter += 1
+        print(str(counter) + "\n")
 
 
 
-
+        if(counter == 0):
+            print("No lists found.") 
+        else:
+            for x in range(len(fileList)):
+                if ".txt" in str(fileList[x]):
+                    f = open(fileList[x])
+                    print(f.read())
+                
